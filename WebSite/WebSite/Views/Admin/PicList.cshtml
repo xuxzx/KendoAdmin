@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "PicList";
+    Layout = "~/Views/Shared/Web_Layout.cshtml";
+}
+@section head{
+    <link href="/Content/kendo/kendo.common.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.rtl.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.default.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.dataviz.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.dataviz.default.min.css" rel="stylesheet">
+
+
+    <script src="/Scripts/kendo/kendo.all.min.js"></script>
+    <script src="/Scripts/kendo/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script src="/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+
+    <script type="text/javascript">
+        //set current to the "en-GB" culture script
+        kendo.culture("zh-CN");
+    </script>
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">图片管理</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>图片列表</h3>
+                    <div class="table-responsive">
+                        @(Html.Kendo().Grid<WebSite.Models.PicViewsModel>()
+                                .Name("grid")
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.Id).Title("序号").Filterable(false);
+                                    columns.Bound(p => p.Title).Title("标题").Sortable(false);
+                                    columns.Bound(p => p.PicTypeName).Title("图片类别").Sortable(false).Filterable(filterable => filterable.UI("PicTypeFilter"));
+                                    columns.Bound(p => p.Link).Title("链接地址").Sortable(false).Filterable(false);                                    
+                                    columns.Bound(p => p.WriteTime).Title("发布时间").Sortable(false).Filterable(false);
+                                    columns.Bound(p => p.NickName).Title("发布人").Sortable(false).Filterable(filterable => filterable.UI("AdminFilter"));
+                                    columns.Bound(p => p.OrderId).Title("排列序号").Filterable(false);
+                                    columns.Command(command => command.Custom("编辑").Click("showDetails"));
+                                    columns.Command(command =>
+                                    {
+                                        command.Destroy();
+                                    });
+                                })
+                                .Sortable()
+                                .Pageable()
+                                .Filterable()
+                                .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Events(events => events.Error("error_handler"))
+                                .Model(model => model.Id(p => p.Id))
+                                .PageSize(13)
+                                            .Read(read => read.Action("Read_PicList", "Admin"))
+                                            .Destroy(x => x.Action("PicDelete", "Admin"))
+                                )
+                        )
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /#page-wrapper -->
+<div id="menu" style="display:none">picnav</div>
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+
+
+    function showDetails(e) {
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        window.location.href = '/Admin/PicAddOrUpdate?id='+dataItem.Id;
+    }
+
+    function PicTypeFilter(element)
+    {
+        element.kendoDropDownList({
+            dataSource: {
+                transport: {
+                    read: "@Url.Action("Get_PicType")"
+                }
+            },
+                optionLabel: "--选择图片类别--"
+        });
+    }
+
+    function AdminFilter(element)
+    {
+        element.kendoDropDownList({
+            dataSource: {
+                transport: {
+                    read: "@Url.Action("Get_Admin")"
+                }
+            },
+                optionLabel: "--选择管理员--"
+        });
+    }
+</script>

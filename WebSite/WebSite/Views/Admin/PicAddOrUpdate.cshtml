@@ -1,0 +1,121 @@
+﻿@model  WebSite.Models.PicViewsModel
+@{
+    ViewBag.Title = "PicAddOrUpdate";
+    Layout = "~/Views/Shared/Web_Layout.cshtml";
+}
+@section head{
+    <link href="/Content/kendo/kendo.common.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.rtl.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.default.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.dataviz.min.css" rel="stylesheet">
+    <link href="/Content/kendo/kendo.dataviz.default.min.css" rel="stylesheet">
+
+
+    <script src="/Scripts/kendo/kendo.all.min.js"></script>
+    <script src="/Scripts/kendo/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script src="/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+
+    <script type="text/javascript">
+        //set current to the "en-GB" culture script
+        kendo.culture("zh-CN");
+    </script>
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">图片管理</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    发布图片
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @using (Html.BeginForm("PicAddOrUpdate", "Admin", FormMethod.Post))
+                            {
+                                @Html.HiddenFor(m => m.Id)
+                                @Html.HiddenFor(m => m.Pic)
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Title)
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Title, "", new { @style = "color:red" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Link) 
+                                    @Html.TextBoxFor(m => m.Link, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Link, "", new { @style = "color:red" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PicTypeId) <br />
+                                    @(Html.Kendo().DropDownList()
+                                          .Name("PicTypeId")
+                                          .DataTextField("Text")
+                                          .DataValueField("Value")
+                                          .BindTo((List<SelectListItem>)ViewBag.PicTypeList)
+                                          .Value(Model.PicTypeId <= 0 ? "1" : Model.PicTypeId.ToString())
+                                    )
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Pic) <br />
+                                    @(Html.Kendo().Upload()
+                                        .Name("pic")
+                                        .Async(a => a
+                                            .Save("Save", "ImageBrowser")
+                                            .Remove("Remove", "ImageBrowser")
+                                            .AutoUpload(true)
+                                        )
+                                        .Events(
+                                        events => events
+                                        .Error("onError")
+                                        .Success("onSuccess")
+                                        )
+                                    )
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.OrderId)<br />
+                                    @(Html.Kendo().NumericTextBox()
+                                    .Name("OrderId")
+                                    .Value(0)
+                                    )
+                                    @Html.ValidationMessageFor(m => m.OrderId, "", new { @style = "color:red" })
+                                </div>
+                                <button type="submit" class="btn btn-default">提 交</button>
+                                <button type="reset" class="btn btn-default">重 置</button>
+                            }
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<div id="menu" style="display:none">picnav</div>
+<script type="text/javascript">
+    function onSuccess(e) {
+        $("#Pic").val(getFileInfo(e));
+    }
+
+    function onError(e) {
+        alert("图片：" + getFileInfo(e)+"已存在");
+    }
+
+    function getFileInfo(e) {
+        return $.map(e.files, function (file) {
+            var info = file.name;
+
+            
+            return info;
+        }).join(", ");
+    }
+</script>

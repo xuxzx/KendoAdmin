@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<model xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.1.0.0" name="LightSpeedModel" targetNamespace="WebSite.Model" databaseProvider="SqlServer2005" connectionString="Data Source=.;Initial Catalog=WebSiteDemo;Integrated Security=True" pluralizedInDatabase="false" mediumTrustCompatibility="false" xmlns="http://namespaces.mindscape.co.nz/lightspeed">
+  <entities>
+    <entity name="Admin" identityType="Int32" cacheExpiry="0" identityMethod="IdentityColumn">
+      <entityProperties>
+        <entityProperty name="LoginName" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="50" />
+          </validations>
+        </entityProperty>
+        <entityProperty name="Password" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="50" />
+          </validations>
+        </entityProperty>
+        <entityProperty name="NickName" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="50" />
+          </validations>
+        </entityProperty>
+      </entityProperties>
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="645722eb-9227-4603-908f-f1223e82d7e3" collectionName="NewsInfos" backreferenceName="Admin" isNullable="false">
+          <entityMoniker name="/LightSpeedModel/NewsInfo" />
+        </oneToManyAssociation>
+        <oneToManyAssociation Id="8f349092-4888-475b-96f9-fd6e8f18e47b" collectionName="PicInfos" backreferenceName="Admin" isNullable="false">
+          <entityMoniker name="/LightSpeedModel/PicInfo" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+    <entity name="NewsInfo" identityType="Int32" cacheExpiry="0" identityMethod="IdentityColumn">
+      <entityProperties>
+        <entityProperty name="Title" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="200" />
+          </validations>
+        </entityProperty>
+        <entityProperty name="NewsContent" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="8000" />
+          </validations>
+        </entityProperty>
+        <entityProperty name="VisitCount" dataType="Int32" privateSetter="false" />
+        <entityProperty name="WriteTime" dataType="DateTime" privateSetter="false" />
+      </entityProperties>
+    </entity>
+    <entity name="NewsType" identityType="Int32" cacheExpiry="0" identityMethod="IdentityColumn">
+      <entityProperties>
+        <entityProperty name="NewsTypeName" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="50" />
+          </validations>
+        </entityProperty>
+      </entityProperties>
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="0b67e6a1-59db-44e6-9034-e065860b226a" collectionName="NewsInfos" backreferenceName="NewsType" isNullable="false">
+          <entityMoniker name="/LightSpeedModel/NewsInfo" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+    <entity name="PicInfo" identityType="Int32" cacheExpiry="0" identityMethod="IdentityColumn">
+      <entityProperties>
+        <entityProperty name="Title" privateSetter="false" />
+        <entityProperty name="Link" privateSetter="false" />
+        <entityProperty name="Pic" privateSetter="false" />
+        <entityProperty name="WriteTime" dataType="DateTime" privateSetter="false" />
+        <entityProperty name="OrderId" dataType="Int32" privateSetter="false" />
+      </entityProperties>
+    </entity>
+    <entity name="PicType" identityType="Int32" cacheExpiry="0" identityMethod="IdentityColumn">
+      <entityProperties>
+        <entityProperty name="PicTypeName" privateSetter="false">
+          <validations>
+            <lengthValidation minimumLength="0" maximumLength="50" />
+          </validations>
+        </entityProperty>
+      </entityProperties>
+      <oneToManyAssociations>
+        <oneToManyAssociation Id="684ee511-1713-4bd0-b211-545b71482cfd" collectionName="PicInfos" backreferenceName="PicType" isNullable="false">
+          <entityMoniker name="/LightSpeedModel/PicInfo" />
+        </oneToManyAssociation>
+      </oneToManyAssociations>
+    </entity>
+  </entities>
+</model>

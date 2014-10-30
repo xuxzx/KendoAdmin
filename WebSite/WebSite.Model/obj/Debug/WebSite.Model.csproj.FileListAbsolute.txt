@@ -1,0 +1,9 @@
+D:\test\WebSite\WebSite.Model\bin\Debug\WebSite.Model.dll
+D:\test\WebSite\WebSite.Model\bin\Debug\WebSite.Model.pdb
+D:\test\WebSite\WebSite.Model\bin\Debug\Mindscape.LightSpeed.dll
+D:\test\WebSite\WebSite.Model\bin\Debug\Mindscape.LightSpeed.Linq.dll
+D:\test\WebSite\WebSite.Model\bin\Debug\Mindscape.LightSpeed.xml
+D:\test\WebSite\WebSite.Model\bin\Debug\Mindscape.LightSpeed.Linq.xml
+D:\test\WebSite\WebSite.Model\obj\Debug\WebSite.Model.dll
+D:\test\WebSite\WebSite.Model\obj\Debug\WebSite.Model.pdb
+D:\test\WebSite\WebSite.Model\obj\Debug\WebSite.Model.csprojResolveAssemblyReference.cache

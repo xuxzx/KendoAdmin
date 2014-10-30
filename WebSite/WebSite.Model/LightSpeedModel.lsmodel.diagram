@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<minimalLanguageDiagram dslVersion="1.1.0.0" absoluteBounds="0, 0, 11, 8.5" name="LightSpeedModel">
+  <modelMoniker name="/LightSpeedModel" />
+  <nestedChildShapes>
+    <entityShape Id="f6de0005-0e22-42f0-8bd0-203d373e27f3" absoluteBounds="0.5, 1.375, 1.5, 1.0830590820312502">
+      <entityMoniker name="/LightSpeedModel/Admin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e7f1fc9d-8558-4336-adf7-f261e4aa6ed6" absoluteBounds="0.5149999999999999, 1.7850000000000001, 1.4700000000000002, 0.57305908203125" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="264b0ee3-8827-4c3f-805e-19bdc74b201c" absoluteBounds="3.375, 1, 1.5, 1.2740787760416668">
+      <entityMoniker name="/LightSpeedModel/NewsInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d0e21911-f970-485c-9a7b-2c91fdf5eac1" absoluteBounds="3.39, 1.4100000000000001, 1.4700000000000002, 0.76407877604166663" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="e8431e1d-65e0-4ec9-90de-d2d5de5b0dd5" absoluteBounds="3.125, 3.375, 1.5, 0.70101969401041675">
+      <entityMoniker name="/LightSpeedModel/NewsType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec6b2cbc-3ba9-49cf-9cf3-75b4dad67e9d" absoluteBounds="3.1399999999999997, 3.785, 1.4700000000000002, 0.19101969401041666" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <oneToManyAssociationConnector edgePoints="[(4 : 3.375); (4 : 2.27407877604167)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <oneToManyAssociationMoniker Id="0b67e6a1-59db-44e6-9034-e065860b226a" />
+      <relativeChildShapes />
+      <nodes>
+        <entityShapeMoniker Id="e8431e1d-65e0-4ec9-90de-d2d5de5b0dd5" />
+        <entityShapeMoniker Id="264b0ee3-8827-4c3f-805e-19bdc74b201c" />
+      </nodes>
+    </oneToManyAssociationConnector>
+    <oneToManyAssociationConnector edgePoints="[(2 : 1.82453938802083); (3.375 : 1.82453938802083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <oneToManyAssociationMoniker Id="645722eb-9227-4603-908f-f1223e82d7e3" />
+      <relativeChildShapes />
+      <nodes>
+        <entityShapeMoniker Id="f6de0005-0e22-42f0-8bd0-203d373e27f3" />
+        <entityShapeMoniker Id="264b0ee3-8827-4c3f-805e-19bdc74b201c" />
+      </nodes>
+    </oneToManyAssociationConnector>
+    <entityShape Id="0af61c29-b733-43da-b829-fa88fef0a570" absoluteBounds="0.875, 4.375, 1.5, 1.4650984700520828">
+      <entityMoniker name="/LightSpeedModel/PicInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="65c92daa-e503-4dd9-8ea0-2d5c4fd6f175" absoluteBounds="0.8899999999999999, 4.785, 1.4700000000000002, 0.95509847005208326" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <entityShape Id="3797f006-9c79-4c20-bc2a-0d99f5c16821" absoluteBounds="4.125, 4.75, 1.5, 0.70101969401041675">
+      <entityMoniker name="/LightSpeedModel/PicType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87db81d6-a275-4cd3-82b6-6a9dfa9b5920" absoluteBounds="4.14, 5.16, 1.4700000000000002, 0.19101969401041666" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </entityShape>
+    <oneToManyAssociationConnector edgePoints="[(4.125 : 5.10050984700521); (2.375 : 5.10050984700521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <oneToManyAssociationMoniker Id="684ee511-1713-4bd0-b211-545b71482cfd" />
+      <relativeChildShapes />
+      <nodes>
+        <entityShapeMoniker Id="3797f006-9c79-4c20-bc2a-0d99f5c16821" />
+        <entityShapeMoniker Id="0af61c29-b733-43da-b829-fa88fef0a570" />
+      </nodes>
+    </oneToManyAssociationConnector>
+    <oneToManyAssociationConnector edgePoints="[(1.4375 : 2.45805908203125); (1.4375 : 4.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <oneToManyAssociationMoniker Id="8f349092-4888-475b-96f9-fd6e8f18e47b" />
+      <relativeChildShapes />
+      <nodes>
+        <entityShapeMoniker Id="f6de0005-0e22-42f0-8bd0-203d373e27f3" />
+        <entityShapeMoniker Id="0af61c29-b733-43da-b829-fa88fef0a570" />
+      </nodes>
+    </oneToManyAssociationConnector>
+  </nestedChildShapes>
+</minimalLanguageDiagram>
